@@ -47,7 +47,7 @@ export const assets = {
   
   },
   {
-    category: "Smartwatch",
+    category: "Smart Watch",
     icon: smartwatch
   
   },
