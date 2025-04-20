@@ -3,3 +3,7 @@
 color: blue !important; 
     
 }
+
+.dropdown-menue li {
+    cursor: pointer;
+}

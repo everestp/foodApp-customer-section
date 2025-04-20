@@ -1,19 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Menubar.css";
 import { assets } from "../../assets/assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 
 const Menubar = () => {
   const [active,setActive]=useState('home')
-  const {quantities} = useContext(StoreContext)
+  const {quantities,token,setToken,setQuantities} = useContext(StoreContext)
    const uniqueItems =Object.values(quantities).filter(qty =>qty >0).length;
-  
+  const navigate = useNavigate()
+
+  const logout =() =>{
+    localStorage.removeItem('token');
+    setToken("")
+    setQuantities("")
+    navigate("/")
+    
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container">
-  
-      <h1
+  <Link to={'/'}>
+  <h1
   style={{
     fontSize: '1.5rem',
     fontWeight: 'bold',
@@ -25,6 +33,8 @@ const Menubar = () => {
 >
   Carten
 </h1>
+  </Link>
+
 
         <button
           className="navbar-toggler"
@@ -64,8 +74,51 @@ const Menubar = () => {
             </div>
               </Link>
             
+          {
+            !token ?(
+              <>
+              
+              <Link to={'/login'}>
             <button className="btn btn-outline-primary">Login</button>
-            <button className="btn btn-outline-success">Register</button>
+            </Link>
+           <Link to={'/signup'}>
+           <button className="btn btn-outline-success">Register</button>
+           </Link>
+              </>
+            ):(
+              <div className="dropdown text-end">
+              <a
+                href="#"
+                className="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://avatar.iran.liara.run/public"
+                
+                  width="32"
+                  height="32"
+                  className="rounded-circle"
+                />
+              </a>
+        
+              <ul className="dropdown-menu text-small">
+                <li>
+                  <button className="dropdown-item" onClick={() => navigate("/myorder")}>
+                    Orders
+                  </button>
+                </li>
+                <li>
+                  <button className="dropdown-item" onClick={logout}>
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            )
+          }
+           
           </div>
         </div>
       </div>

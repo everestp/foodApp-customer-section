@@ -4,18 +4,17 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import './Cart.css'
 import { StoreContext } from "../../context/StoreContext";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { calculateCaertTotal } from "../../Utils/cartUtlis";
 const Cart = () => {
+  const navigate = useNavigate()
      const {itemList,increaseQty,decreaseQty,quantities,removeFromCart}=useContext(StoreContext);
 
      //cart items
      const cartItems =itemList.filter(item =>quantities[item.id] >0);
 
      //calcualting
-     const subtotal = cartItems.reduce((acc,item)=>acc + item.price * quantities[item.id],0);
-     const shipping = subtotal ===0 ?0.0:10
-     const vat = subtotal *0.13
-     const total = subtotal + shipping +vat;
+   const {subtotal,shipping,vat,total} = calculateCaertTotal(cartItems,quantities)
 
 
  
@@ -73,7 +72,7 @@ const Cart = () => {
                         </div>
                         <div className="col-md-2 text-end">
                           <p className="fw-bold">
-                            Rs {(item.price * item.quantity).toFixed(2)}
+                            Rs {(item.price * quantities[item.id]).toFixed(2)}
                           </p>
                           <button
                             className="btn btn-sm btn-outline-danger"
@@ -121,7 +120,7 @@ const Cart = () => {
                 <strong>Total</strong>
                 <strong>Rs {total.toFixed(2)}</strong>
               </div>
-              <button className="btn btn-primary w-100">Proceed to Checkout</button>
+              <button onClick={()=>navigate('/order')} className="btn btn-primary w-100">Proceed to Checkout</button>
             </div>
           </div>
           <div className="card mt-4">

@@ -1,60 +1,81 @@
-import { createContext, useEffect,useState } from "react";
-import axios from "axios";
+import { createContext, useEffect, useState } from "react";
 import { fetchItemList } from "../service/ItemService";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import {  addTocartService, getCartData, removeQtyFromCart } from "../service/cartService";
 
- export const StoreContext = createContext(null)
+export const StoreContext = createContext(null);
 
- export const StoreContextProvider = (props) => { 
+export const StoreContextProvider = (props) => {
+  const [itemList, setItemList] = useState([]);
+  const [quantities, setQuantities] = useState({});
+  const [token, setToken] = useState("");
 
-const [itemList ,setItemList] = useState([])
-const [quantities,setQuantities] = useState({})
+  const navigate = useNavigate();
+  const increaseQty = async (foodId) => {
+    setQuantities((prev) => ({ ...prev, [foodId]: (prev[foodId] || 0) + 1 }));
+ await addTocartService(foodId,token)
+  };
 
-const increaseQty = (foodId) =>{ 
+  const addtoCart = (id) => {
+    increaseQty(id);
+    toast.success("Added to Cart");
 
-setQuantities((prev)=>({...prev,[foodId]:(prev[foodId] || 0)+1 }))
-toast.success("Added to Cart")
+    navigate("/cart");
+  };
 
-}
+  const decreaseQty = async (foodId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [foodId]: prev[foodId] > 0 ? prev[foodId] - 1 : 0,
+    }));
+ await removeQtyFromCart(foodId,token);
+  };
 
-const decreaseQty = (foodId) =>{
-  
-    setQuantities((prev)=>({...prev,[foodId]:prev[foodId]>0? prev[foodId]-1:0 }))
+  const removeFromCart = (foodId) => {
+    setQuantities((prevQuantities) => {
+      const updateQuantities = { ...prevQuantities };
+      delete updateQuantities[foodId];
+      toast.error("Items Removed");
+      return updateQuantities;
+    });
+  };
 
-  
-}
+  const loadCartData = async (token)=>{
+   const items = await getCartData(token)
+   setQuantities(items)
 
-const removeFromCart = (foodId)=>{
-  setQuantities((prevQuantities)=>{
-    const updateQuantities ={...prevQuantities};
-    delete updateQuantities[foodId];
-    toast.error("Items Removed")
-    return updateQuantities;
+  }
 
-  })
-}
+  const contextValue = {
+    itemList,
+    increaseQty,
+    decreaseQty,
+    quantities,
+    removeFromCart,
+    addtoCart,
+    token,
+    setToken,
+    setQuantities,
+    loadCartData
+  };
 
-const contextValue = {
-itemList,
-increaseQty,
-decreaseQty,
-quantities,
-removeFromCart
-};
+  useEffect(() => {
+    async function loadData() {
+      const data = await fetchItemList();
+      setItemList(data);
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+       await  loadCartData(localStorage.getItem("token"))
+      }
+      console.log(data);
+    }
+    loadData();
+  }, []);
 
-useEffect(()=>{
-async function loadData(){
-const data = await fetchItemList()
-setItemList(data)
-console.log(data)
-}
-loadData()
-},[])
-
-
- return (
+  return (
     <StoreContext.Provider value={contextValue}>
-        {props.children}
+      {props.children}
     </StoreContext.Provider>
-  )
- }
+  );
+};

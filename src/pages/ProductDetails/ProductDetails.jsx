@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchFoodDetail } from "../../service/ItemService";
 import { toast } from "react-toastify";
+import { StoreContext } from "../../context/StoreContext";
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [data, setData] = useState({});
-
+const {addtoCart} =useContext(StoreContext)
 
 
 
@@ -118,7 +119,7 @@ const ProductDetails = () => {
 
                     {/* Actions */}
                     <div className="d-grid gap-2">
-                    <button class="btn btn-primary btn-lg mb-3 me-2">
+                    <button class="btn btn-primary btn-lg mb-3 me-2" onClick={()=>{addtoCart()}}>
                     <i class="bi bi-cart-plus"></i> Add to Cart
                 </button>
             <button class="btn btn-outline-secondary btn-lg mb-3">

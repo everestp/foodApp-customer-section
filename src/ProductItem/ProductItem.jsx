@@ -3,7 +3,7 @@ import "./ProductItem.css";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
 const ProductItem = ({ name, description, id, imageUrl, price }) => {
-  const { increaseQty, decreaseQty, quantities } = useContext(StoreContext);
+  const {addtoCart } = useContext(StoreContext);
   return (
     <div className="col-12 col-sm-6  col-md-4 col-lg-3 mb-4 d-flex justify-content-center">
       <div className="card " style={{ maxWidth: "320px" }}>
@@ -31,7 +31,7 @@ const ProductItem = ({ name, description, id, imageUrl, price }) => {
         <div className="card-footer d-flex justify-content-between bg-light">
           <button
             className="btn btn-primary btn-sm"
-            onClick={() => increaseQty(id)}
+            onClick={() => addtoCart(id)}
           >
             {" "}
             <i className="bi bi-cart-plus"></i> Add to Cart 

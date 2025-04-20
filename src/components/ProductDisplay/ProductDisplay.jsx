@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import ProductItem from "../../ProductItem/ProductItem";
 const ProductDisplay = ({category,searchText}) => {
