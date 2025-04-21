@@ -2,25 +2,30 @@ import React, { useContext } from 'react';
 import './PlaceOrder.css';
 import { districtCityData } from '../../data/data';
 import { useState } from 'react';
-
+import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 import { calculateCaertTotal } from '../../Utils/cartUtlis';
+import { assets } from '../../assets/assets';
 const PlaceOrder = () => { 
-  const {itemList,increaseQty,decreaseQty,quantities,removeFromCart}=useContext(StoreContext);
+  const {itemList,quantities}=useContext(StoreContext);
   const uniqueItems =Object.values(quantities).filter(qty =>qty >0).length;
   const cartItems =itemList.filter(item =>quantities[item.id] >0);
    const {subtotal,shipping,vat,total} = calculateCaertTotal(cartItems,quantities)
- 
+ const navigate = useNavigate()
+ const handlePaymentChange = (event)=>{
+  const {id } = event.target;
 
+  setPayment(id)
+ }
         const [selectedDistrict, setSelectedDistrict] = useState('');
         const [cities, setCities] = useState([]);
-      const [payment,setPayment] =useState('')
+      const [payment,setPayment] =useState('esewa')
         const handleDistrictChange = (e) => {
           const district = e.target.value;
           setSelectedDistrict(district);
           setCities(districtCityData[district] || []);
         };
-
+ 
 
 
   return (
@@ -149,30 +154,91 @@ cartItems.map((item)=>(
 
             <h4 className="mb-3">Payment</h4>
 
-            <div className="my-3">
-              <div className="form-check">
-                <input id="credit" name="paymentMethod" type="radio" className="form-check-input" defaultChecked required />
-                <label className="form-check-label" htmlFor="credit">Credit card</label>
-              </div>
-              <div className="form-check">
-                <input id="debit" name="paymentMethod" type="radio" className="form-check-input" required />
-                <label className="form-check-label" htmlFor="debit">Esewa</label>
-              </div>
-              <div className="form-check">
-                <input id="paypal" name="paymentMethod" type="radio" className="form-check-input" required />
-                <label className="form-check-label" htmlFor="paypal">Khalti</label>
-              </div>
-              <div className="form-check">
-                <input id="paypal" name="paymentMethod" type="radio" className="form-check-input" required />
-                <label className="form-check-label" htmlFor="paypal">Cash on delivery</label>
-              </div>
-            </div>
+            <div className="form-check d-flex align-items-center mb-3">
+  <input
+    type="radio"
+    id="esewa"
+    name="paymentMethod"
+    value="esewa"
+    className="form-check-input"
+    onChange={handlePaymentChange}
+    style={{ marginRight: "10px" }} // Adds spacing between radio and image
+  />
+  <label htmlFor="esewa" className="form-check-label">
+    <img
+      src={assets.esewa1}
+      alt="Esewa"
+      style={{
+        width: "90px",
+        height: "50px",
+        cursor: "pointer",
+        border: "2px solid transparent",
+        borderRadius: "5px",
+      }}
+      className="img-fluid"
+    />
+  </label>
+</div>
+
+<div className="form-check d-flex align-items-center mb-3">
+  <input
+    type="radio"
+    id="khalti"
+    name="paymentMethod"
+    value="khalti"
+    className="form-check-input"
+    onChange={handlePaymentChange}
+    style={{ marginRight: "10px" }} // Adds spacing between radio and image
+  />
+  <label htmlFor="khalti" className="form-check-label">
+    <img
+      src={assets.khalti1}
+      alt="Khalti"
+      style={{
+        width: "90px",
+        height: "50px",
+        cursor: "pointer",
+        border: "2px solid transparent",
+        borderRadius: "5px",
+      }}
+      className="img-fluid"
+    />
+  </label>
+</div>
+
+<div className="form-check d-flex align-items-center mb-3">
+  <input
+    type="radio"
+    id="cod"
+    name="paymentMethod"
+    value="cod"
+    className="form-check-input"
+    onChange={handlePaymentChange}
+    style={{ marginRight: "10px" }} // Adds spacing between radio and image
+  />
+  <label htmlFor="cod" className="form-check-label">
+    <img
+      src={assets.cod}
+      alt="Cash on Delivery"
+      style={{
+        width: "90px",
+        height: "50px",
+        cursor: "pointer",
+        border: "2px solid transparent",
+        borderRadius: "5px",
+      }}
+      className="img-fluid"
+    />
+  </label>
+</div>
 
            
 
             <hr className="my-4" />
-
-            <button className="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+<Link to={`/${payment}`}>
+<button className="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+</Link>
+            
           </form>
         </div>
       </div>

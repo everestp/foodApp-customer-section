@@ -10,6 +10,10 @@ import Register from './pages/Auth/Register';
 import Cart from './pages/Cart/Cart';
 import { ToastContainer } from 'react-toastify';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
+import Esewa from './pages/PaymentSection/Esewa/Esewa;';
+import PaymentDone from './pages/PaymentSection/PaymentDone';
+import Khalti from './pages/PaymentSection/Khati/Khati';
+import Cod from './pages/PaymentSection/COD/Cod';
 
 function App() {
   const location = useLocation(); // Hook to get the current route path
@@ -22,6 +26,7 @@ function App() {
       {/* Show Menubar only if the current path is NOT login or signup */}
       {!hideMenubar && <Menubar />}
 <ToastContainer/>
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/contact' element={<ContactUs />} />
@@ -31,6 +36,12 @@ function App() {
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/order' element={<PlaceOrder/>}/>
+        <Route path='/esewa' element={<Esewa/>}/>
+        <Route path='/khalti' element={<Khalti/>}/>
+        <Route path='/cod' element={<Cod/>}/>
+
+        <Route path='/success-payment' element={<PaymentDone/>}/>
+
       </Routes>
     </div>
   );
