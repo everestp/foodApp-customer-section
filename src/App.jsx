@@ -14,6 +14,8 @@ import Esewa from './pages/PaymentSection/Esewa/Esewa;';
 import PaymentDone from './pages/PaymentSection/PaymentDone';
 import Khalti from './pages/PaymentSection/Khati/Khati';
 import Cod from './pages/PaymentSection/COD/Cod';
+import MyOrders from './pages/MyOrders/MyOrders';
+import Orders from './pages/Admin/Orders';
 
 function App() {
   const location = useLocation(); // Hook to get the current route path
@@ -39,8 +41,10 @@ function App() {
         <Route path='/esewa' element={<Esewa/>}/>
         <Route path='/khalti' element={<Khalti/>}/>
         <Route path='/cod' element={<Cod/>}/>
+        <Route path='/myorder' element={<MyOrders/>}/>
+        <Route path='/allorder' element={<Orders/>}/>
 
-        <Route path='/success-payment' element={<PaymentDone/>}/>
+        <Route path='/sucess-payment' element={<PaymentDone/>}/>
 
       </Routes>
     </div>

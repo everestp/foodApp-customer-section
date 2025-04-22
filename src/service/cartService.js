@@ -40,3 +40,17 @@ export const getCartData = async (token) =>{
          throw error
     }
 }
+
+export const clearCart = async(token) =>{
+  
+
+    try {
+        const response = await axios.delete(`${API_URL}/clear`, { headers: { "Authorization": `Bearer ${token}` } })
+        setQunatities({})
+        return response;
+    } catch (error) {
+        toast.error("Error while clearing cart")
+        throw error
+    }
+   
+}

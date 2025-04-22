@@ -1,9 +1,33 @@
 import React from 'react'
 import { assets } from '../../../assets/assets'
 import { useNavigate } from 'react-router-dom'
-
+import { useContext } from 'react'
+import { StoreContext } from '../../../context/StoreContext'
+import { paymentDone } from '../../../service/orderService'
 const Cod = () => {
+
+  const {token ,orderId ,setOrderId} = useContext(StoreContext);
     const navigate = useNavigate()
+
+ const handleCod = async  ()=>{
+
+  const datacod = {
+    PaymentStatus: "COD",
+    TransactionCode: "COD",
+  }
+  try {
+    const response = await paymentDone(datacod,token ,orderId)
+    setOrderId("xxx")
+    navigate("/sucess-payment")
+    console.log(response)
+  
+    
+  } catch (error) {
+    console.log("Error",error)
+  }
+  
+ }
+    
   return (
     <div>
 
@@ -30,13 +54,13 @@ const Cod = () => {
     <img
       src={assets.cod}
       alt="Cash on Delivery"
-      style={{ width: "100px", height: "100px", margin: "20px auto" }}
+     
     />
     <button
     className="btn btn-outline-primary px-4 py-2 rounded-pill mt-3"
-    onClick={() => navigate('/')}
+    onClick={handleCod}
   >
-    Continue Shopping
+   Confirm Order
   </button>
   </div>
 </div>

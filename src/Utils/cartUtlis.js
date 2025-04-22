@@ -1,4 +1,4 @@
-export  const calculateCaertTotal =(cartItems,quantites)=>{
+export  const calculateCartTotal =(cartItems,quantites)=>{
 
  const subtotal = cartItems.reduce((acc,item)=>acc + item.price * quantites[item.id],0);
   const shipping = subtotal ===0 ?0.0:10

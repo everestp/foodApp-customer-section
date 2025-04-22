@@ -4,16 +4,16 @@ import upload from './upload.png';
 import cart from './cart.png';
 import cloth from './cloth.png';
 import cosmectic from './cosmectic.png';
-import esewa from './esewa.png'
-import khalti from './khalti.jpg'
+import esewa from './esewa1.png'
+import khalti from './khalti1.png'
 import cod from './cod.svg'
 import headphone from './headphone.png';
 import kitchen from './kitchen.png';
 import smartphone from './smartphone.png';
 import smartwatch from './smartwatch.png';
 import analog from './analog.png';
-import esewa1 from './esewa1.png'
-import khalti1 from './khalti1.png'
+import esewa1 from './esewa.png'
+import khalti1 from './khalti.jpg'
 export const assets = {
   kitchen,
   smartphone,

@@ -5,7 +5,7 @@ import './Cart.css'
 import { StoreContext } from "../../context/StoreContext";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { calculateCaertTotal } from "../../Utils/cartUtlis";
+import { calculateCartTotal } from "../../Utils/cartUtlis";
 const Cart = () => {
   const navigate = useNavigate()
      const {itemList,increaseQty,decreaseQty,quantities,removeFromCart}=useContext(StoreContext);
@@ -14,7 +14,7 @@ const Cart = () => {
      const cartItems =itemList.filter(item =>quantities[item.id] >0);
 
      //calcualting
-   const {subtotal,shipping,vat,total} = calculateCaertTotal(cartItems,quantities)
+   const {subtotal,shipping,vat,total} = calculateCartTotal(cartItems,quantities)
 
 
  
