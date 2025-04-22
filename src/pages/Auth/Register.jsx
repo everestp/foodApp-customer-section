@@ -63,7 +63,7 @@ const Register = () => {
     }
 
     try {
-      const response = await register(data)  ;
+      const response = await register(data);
       if(response.status ===201){
         toast.success("Register Successfull ,Please Login")
         navigate('/login')
