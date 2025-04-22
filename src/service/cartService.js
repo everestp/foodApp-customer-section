@@ -14,6 +14,7 @@ export const addTocartService = async (foodId,token)=>{
            return response
      } catch (error) {
         console.log(("DEBUG :Error while  Adding items",error))
+        console.log("Does it  work")
          throw error
      }
 }
