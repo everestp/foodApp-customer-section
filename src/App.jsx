@@ -26,7 +26,7 @@ function App() {
   const location = useLocation(); // Hook to get the current route path
  const {token}=useContext(StoreContext)
   // Check if the current path is login or signup
-  const hideMenubar = location.pathname === '/login' || location.pathname === '/signup' || location.pathname ==='/admin';
+  const hideMenubar = location.pathname === '/login' || location.pathname === '/signup' || location.pathname ==='/admin56';
 
   return (
     <div>

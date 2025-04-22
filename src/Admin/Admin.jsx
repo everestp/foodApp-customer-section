@@ -2,18 +2,16 @@
 import { useState } from 'react'
 
 import { Route } from 'react-router-dom'
-import AddFood from './pages/AddFood/AddFood'
-import ListFood from './pages/ListFood/ListFood'
-import Orders from './pages/Orders/Orders'
 
-import Menubar from './components/Menubar/Menubar'
 
-import { Routes } from 'react-router-dom'
-import './App.css'
-import Navbar from './components/Sidebar/Navbar'
+
+
 import { ToastContainer} from 'react-toastify'
 
-const App = () => {
+import AdminRoutes from '../Routes/AdminRoutes'
+import Adminnavbar from './components/Sidebar/Adminnavbar'
+import Adminmenubar from './components/Menubar/Adminmenubar'
+const Admin = () => {
   const [sideBarVisible, setSideBarVisible] = useState(false);
   const toggleSideBar = () =>setSideBarVisible(!sideBarVisible);
    
@@ -22,25 +20,20 @@ const App = () => {
        
             <div className="border-end bg-white" id="sidebar-wrapper">
               
-             <Navbar sideBarVisible={sideBarVisible}/>
+             <Adminnavbar sideBarVisible={sideBarVisible}/>
             </div>
       
             <div id="page-content-wrapper">
               
-             <Menubar toggleSideBar={toggleSideBar}/>
+             <Adminmenubar toggleSideBar={toggleSideBar}/>
              <ToastContainer/>
                 <div className="container-fluid">
-                    <Routes>
-                        <Route path="/add" element={<AddFood/>} />
-                        <Route path="/list" element={<ListFood/>} />
-                        <Route path="/order" element={<Orders/>} />
-                        <Route path="/" element={<ListFood/>} />
-                    </Routes>
+                  <AdminRoutes/>
                 </div>
             </div>
         </div>
   )
 }
 
-export default App
+export default Admin
 
