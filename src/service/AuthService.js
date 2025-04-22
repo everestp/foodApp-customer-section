@@ -1,7 +1,8 @@
 
 import axios from "axios";
+import { AP_URL } from "./baseURl";
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = `${AP_URL}/api`;
 
 
  export const  register =  async (data)=>{

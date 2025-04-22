@@ -1,6 +1,7 @@
 import axios from "axios";
+import { AP_URL } from "./baseURl";
 
-const API_URL = "http://localhost:8080/api/foods";
+const API_URL = `${AP_URL}/api/foods`;
 
  export const fetchItemList = async () => {
 

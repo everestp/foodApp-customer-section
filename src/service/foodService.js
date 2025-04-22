@@ -1,5 +1,6 @@
 import axios from "axios";
-const API_URL = 'http://localhost:8080/api/foods';
+import { AP_URL } from "./baseURl";
+const API_URL = `${AP_URL}/api/foods`;
  export const addFood = async(foodData,image) => {
     const formData = new FormData();
     formData.append('food', JSON.stringify(foodData));

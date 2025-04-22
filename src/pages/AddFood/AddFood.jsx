@@ -134,7 +134,7 @@ const AddFood = () => {
                   id="price"
                   required
                   name="price"
-                  placeholder="Price: ₹ 1000"
+                  placeholder="Price: Rs 1000"
                   onChange={onChangeHandler}
                   value={data.price}
                 />

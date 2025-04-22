@@ -2,8 +2,9 @@ import axios from "axios";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { StoreContext } from "../context/StoreContext";
+import { AP_URL } from "./baseURl";
 
-const API_URL ="http://localhost:8080/api/orders"
+const API_URL =`${AP_URL}/api/orders`
 
 
 export const createOrder = async (orderData ,token)=>{
