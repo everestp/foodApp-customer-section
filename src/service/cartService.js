@@ -45,7 +45,7 @@ export const clearCart = async(token) =>{
   
 
     try {
-        const response = await axios.delete(`${API_URL}/clear`, { headers: { "Authorization": `Bearer ${token}` } })
+        const response = await axios.delete(`${API_URL}`, { headers: { "Authorization": `Bearer ${token}` } })
         setQunatities({})
         return response;
     } catch (error) {

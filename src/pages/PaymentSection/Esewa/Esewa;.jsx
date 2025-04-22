@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../../../assets/assets";
 import { StoreContext } from "../../../context/StoreContext";
-import "./Esewa.css";
+
 import { calculateCartTotal } from "../../../Utils/cartUtlis";
 import { Link, useNavigate } from "react-router-dom";
-import { clearCart, paymentDone } from "../../../service/orderService";
-import axios from "axios";
+import { paymentDone } from "../../../service/orderService";
+import { clearCart } from "../../../service/cartService";
+
 const Esewa = () => {
  const { itemList, quantities ,token ,orderId ,setOrderId} = useContext(StoreContext);
   const cartItems = itemList.filter((item) => quantities[item.id] > 0);
@@ -30,6 +31,7 @@ event.preventDefault();
 try {
   const response = await paymentDone(data,token ,orderId)
   setOrderId("xxx")
+clearCart(token)
   navigate("/sucess-payment")
   console.log(response)
 
