@@ -1,8 +1,9 @@
 import axios from "axios";
-import { assets } from "../../assets/assets";
 import React from "react";
-import { addFood } from "../../services/foodService";
 import { toast } from "react-toastify";
+import { addFood } from "../../service/foodService";
+import { assets } from "../../assets/assets";
+
 const AddFood = () => {
   const [image, setImage] = React.useState(null);
   const [data, setData] = React.useState({
@@ -39,19 +40,26 @@ const AddFood = () => {
       console.log("DEBUG:Error Adding Food ", error);
     }
   };
+
   return (
     <div className="mx-2 mt-5">
-      <div className="row">
-        <div className="card col-md-4">
+      <div className="row justify-content-center">
+        <div className="card col-12 col-md-8 shadow-sm">
           <div className="card-body">
-            <h2 className="mb-4">Add Food</h2>
+            <h2 className="mb-4 text-center text-primary">Add Food</h2>
             <form onSubmit={onSubmitHandler}>
-              <div className="mb-3">
+              <div className="mb-4 text-center">
                 <label htmlFor="image" className="form-label">
                   <img
-                    src={image ? URL.createObjectURL(image) : assets.upload}
-                    alt=""
-                    width={98}
+                    src={image ? URL.createObjectURL(image) : assets.analog}
+                    alt="Uploaded preview"
+                    width={120}
+                    height={120}
+                    style={{
+                      border: "2px solid #ccc",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                    }}
                   />
                 </label>
                 <input
@@ -126,13 +134,17 @@ const AddFood = () => {
                   id="price"
                   required
                   name="price"
-                  placeholder="Price: &#x20B9; 1000"
+                  placeholder="Price: ₹ 1000"
                   onChange={onChangeHandler}
                   value={data.price}
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                style={{ width: "100%" }}
+              >
                 Save
               </button>
             </form>

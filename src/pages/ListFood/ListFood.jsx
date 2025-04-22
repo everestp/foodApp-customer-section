@@ -2,7 +2,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import { useState,useEffect } from "react";
-import { deleteFood, getFoodList } from "../../services/foodService";
+import { deleteFood, getFoodList } from "../../service/foodService";
+
 const ListFood = () => {
     const [list, setList] = useState([]);
     const fetchList = async ()=>{
@@ -23,7 +24,7 @@ try {
     const success = await deleteFood(foodId);
     if(success){
        toast.success("Items Removed") 
-       await fetchList();
+       await fet();
     }
     else{
         toast.error("Error Removing Items")

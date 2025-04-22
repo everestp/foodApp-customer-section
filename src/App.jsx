@@ -15,15 +15,18 @@ import PaymentDone from './pages/PaymentSection/PaymentDone';
 import Khalti from './pages/PaymentSection/Khati/Khati';
 import Cod from './pages/PaymentSection/COD/Cod';
 import MyOrders from './pages/MyOrders/MyOrders';
-import Orders from './pages/Admin/Orders';
+
 import { useContext } from 'react';
 import { StoreContext } from './context/StoreContext';
+
+import Orders from './Admin/Orders';
+import Admin from './Admin/Admin';
 
 function App() {
   const location = useLocation(); // Hook to get the current route path
  const {token}=useContext(StoreContext)
   // Check if the current path is login or signup
-  const hideMenubar = location.pathname === '/login' || location.pathname === '/signup';
+  const hideMenubar = location.pathname === '/login' || location.pathname === '/signup' || location.pathname ==='/admin';
 
   return (
     <div>
@@ -45,6 +48,7 @@ function App() {
         <Route path='/cod' element={<Cod/>}/>
         <Route path='/myorder' element={token ? <MyOrders/> : <Login/>}/>
         <Route path='/allorder' element={<Orders/>}/>
+        <Route path='/admin56/*' element={<Admin/>}/>
 
         <Route path='/sucess-payment' element={<PaymentDone/>}/>
 

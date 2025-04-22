@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StoreContext } from "../../context/StoreContext";
+
 import axios from "axios";
-import { assets } from "../../assets/assets";
+
+import { StoreContext } from "../context/StoreContext";
+import { assets } from "../assets/assets";
 
 const Orders = () => {
   const { token } = useContext(StoreContext);

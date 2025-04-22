@@ -1,4 +1,4 @@
-import logo from './logo.png';
+
 import parcel from './parcel.png';
 import upload from './upload.png';
 import cart from './cart.png';
@@ -14,21 +14,25 @@ import smartwatch from './smartwatch.png';
 import analog from './analog.png';
 import esewa1 from './esewa.png'
 import khalti1 from './khalti.jpg'
+import logo from './logo.png';
+;
+
 export const assets = {
   kitchen,
   smartphone,
   smartwatch,
   analog,
   headphone,
-  parcel,
   upload,
   cart,
   esewa,
   khalti,
   cod,
   esewa1,
+
+  khalti1,
   logo,
-  khalti1
+  parcel,
 }
 
   export const categories =[
