@@ -23,7 +23,7 @@ const Orders = () => {
   // Function to fetch orders
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(`${AP_URL}}/api/orders/all`, {
+      const response = await axios.get(`${AP_URL}/api/orders/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ const Orders = () => {
   const updateStatus = async (event, orderId) => {
     try {
 
-        const response = await axios.patch(`http://localhost:8080/api/orders/status/${orderId}?status=${event.target.value}`, {
+        const response = await axios.patch(`${AP_URL}/api/orders/status/${orderId}?status=${event.target.value}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
