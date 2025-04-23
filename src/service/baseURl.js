@@ -1,1 +1,1 @@
- export const AP_URL = 'https://foodapp-springboot-2.onrender.com'
+ export  const AP_URL = 'https://foodapp-springboot-2.onrender.com'

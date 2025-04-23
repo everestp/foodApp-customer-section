@@ -104,7 +104,7 @@ const Menubar = () => {
         
               <ul className="dropdown-menu text-small">
                 <li>
-                  <button className="dropdown-item" onClick={() => navigate("/myorder")}>
+                  <button className="dropdown-item" onDoubleClick={()=>navigate("/admin56/*")} onClick={() => navigate("/myorder")}>
                     Orders
                   </button>
                 </li>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import axios from "axios";
-
+import {AP_URL} from "../service/baseURl"
 import { StoreContext } from "../context/StoreContext";
 import { assets } from "../assets/assets";
 
@@ -23,7 +23,7 @@ const Orders = () => {
   // Function to fetch orders
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/orders/all", {
+      const response = await axios.get(`${AP_URL}}/api/orders/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
