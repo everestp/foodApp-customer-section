@@ -109,6 +109,11 @@ const Menubar = () => {
                   </button>
                 </li>
                 <li>
+                  <button className="dropdown-item" onClick={()=>navigate("/admin56")}>
+                    Admin
+                  </button>
+                </li>
+                <li>
                   <button className="dropdown-item" onClick={logout}>
                     Logout
                   </button>
